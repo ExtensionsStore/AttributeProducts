@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!-- 
+/**
+ * Aydus_AttributeProducts module
+ *
+ * @category   Aydus
+ * @package    Aydus_AttributeProducts
+ * @author     Aydus <davidt@aydus.com>
+ */
+-->
+<config>
+    <modules>
+        <Aydus_AttributeProducts>
+             <active>true</active>
+             <codePool>community</codePool>
+        </Aydus_AttributeProducts>
+    </modules>
+</config>

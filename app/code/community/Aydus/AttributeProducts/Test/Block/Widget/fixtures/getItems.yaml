@@ -1,0 +1,32 @@
+tables:
+  core/layout_update:
+    - layout_update_id: 1
+      handle: default
+      xml: 
+  core/layout_link:
+    - layout_link_id: 1
+      store: 0
+      area: frontend
+      package: base
+      theme: default
+      layout_update_id: 1
+  widget/widget_instance:
+    - instance_id: 1
+      instance_type: aydus_attributeproducts/widget
+      package_theme: base/default
+      title: 
+      store_ids: 0
+      widget_parameters: 
+  widget/widget_instance_page:
+    - page_id: 1
+      instance_id: 1
+      page_group: all_pages
+      layout_handle: default
+      block_reference: 
+      page_for: all
+  widget/widget_instance_page_layout:
+    - page_id: 1
+      layout_update_id: 1
+      
+      
+      
