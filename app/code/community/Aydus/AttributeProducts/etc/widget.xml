@@ -65,6 +65,13 @@
                 <source_model>aydus_attributeproducts/catalog_category_attribute_source_sortby</source_model>
                 <description><![CDATA[Select attribute value to sort products list by.]]></description>
             </order_by>   
+            <letter_param translate="label description">
+                <label>First Letter Alphabetical Param</label>
+                <visible>1</visible>
+                <required>0</required>
+                <type>text</type>
+                <description><![CDATA[GET variable parameter when Sort is First Letter Alphabetical.]]></description>
+            </letter_param>                          
             <mode>
                 <label>Layout Mode</label>
                 <visible>1</visible>

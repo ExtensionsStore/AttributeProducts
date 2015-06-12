@@ -58,6 +58,7 @@ class Aydus_AttributeProducts_Block_Widget extends Mage_Catalog_Block_Product_Li
     /**
      * Add attributes and widget configuration to collection
      * Collection is initially raw, no layer or category loaded
+     * If sort by letter is used, an unfiltered collection will be added to toolbar
      * 
      */
     protected function _getProductCollection()
@@ -129,17 +130,51 @@ class Aydus_AttributeProducts_Block_Widget extends Mage_Catalog_Block_Product_Li
                     
                     $orderBy = $this->getOrderBy();
                     $this->setSortBy($orderBy);
-                    $this->_productCollection->setOrder($orderBy, 'ASC');                    
+
+                    if ($orderBy == 'letter'){
+                        
+                        $letter = $this->getRequest()->getParam($this->getLetterParam());
+                        
+                        if (preg_match('/^[A-Z0-9]$/i', $letter)){
+                            
+                            //clone the collection AND the select so there's an unfiltered collection for the toolbar 
+                            $letterCollection = clone $this->_productCollection;
+                            $letterSelect = clone $letterCollection->getSelect();
+                            $reflectionClass = new ReflectionClass($letterCollection);
+                            $reflectionProperty = $reflectionClass->getProperty('_select');
+                            $reflectionProperty->setAccessible(true);
+                            $reflectionProperty->setValue($letterCollection, $letterSelect);
+                            $letterCollection->addAttributeToSelect('name');
+                            $toolbar = $this->getChild('toolbar');
+                            $toolbar->setLetterCollection($letterCollection);
+                            
+                            $this->_productCollection->addFieldToFilter('name', array('like' => "$letter%"));
+                        }
+                        
+                        $this->_productCollection->setOrder('name', 'ASC');        
+                                                                
+                    } else {
+                        
+                        $this->_productCollection->setOrder($orderBy, 'ASC');
+                    }
+                    
                 }
                                
             }
-            
-            //$select = (string)$this->_productCollection->getSelect();
-        
+                    
         }
         
-        
         return $this->_productCollection;
+    }
+    
+    public function getLetterParam()
+    {
+        if (!$this->getData('letter_param')){
+    
+            $this->setData('letter_param', 'l');
+        }
+    
+        return $this->getData('letter_param');
     }
 	
 }
