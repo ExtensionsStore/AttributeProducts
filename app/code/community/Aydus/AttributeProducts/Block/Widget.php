@@ -108,15 +108,21 @@ class Aydus_AttributeProducts_Block_Widget extends Mage_Catalog_Block_Product_Li
                     
                 }
                 
+                $rootCategoryId = Mage::app()->getStore()->getRootCategoryId();
+                $category = Mage::getModel('catalog/category')->load($rootCategoryId);
+                
                 if ((int)$this->getCategoryId()){
                 
-                    $categoryId = (int)$this->getCategoryId();
-                    $category = Mage::getModel('catalog/category')->load($categoryId);
-                    if ($category->getId()){
+                    $widgetCategoryId = (int)$this->getCategoryId();
+                    $widgetCategory = Mage::getModel('catalog/category')->load($widgetCategoryId);
+                    if ($widgetCategory->getId()){
                         
-                        $this->_productCollection->addCategoryFilter($category);
+                        $this->_productCollection->addCategoryFilter($widgetCategory);
+                        $category = $widgetCategory;
                     }
-                }                
+                } 
+
+                $this->prepareSortableFieldsByCategory($category);              
                 
                 if ($this->getNumProducts()){
                     $size = $this->getNumProducts();
