@@ -122,7 +122,7 @@ class Aydus_AttributeProducts_Block_Widget extends Mage_Catalog_Block_Product_Li
                     }
                 } 
 
-                $this->prepareSortableFieldsByCategory($category);              
+                $this->prepareSortableFieldsByCategory($category);
                 
                 if ($this->getNumProducts()){
                     $size = $this->getNumProducts();
@@ -154,7 +154,16 @@ class Aydus_AttributeProducts_Block_Widget extends Mage_Catalog_Block_Product_Li
                             $toolbar = $this->getChild('toolbar');
                             $toolbar->setLetterCollection($letterCollection);
                             
-                            $this->_productCollection->addFieldToFilter('name', array('like' => "$letter%"));
+                            //set filter
+                            if ($letter == 0){
+                                
+                                $this->_productCollection->addFieldToFilter('name', array('regexp' => "^[1-9].*"));
+                                                                
+                            } else {
+                                
+                                $this->_productCollection->addFieldToFilter('name', array('like' => "$letter%"));
+                            }
+                            
                         }
                         
                         $this->_productCollection->setOrder('name', 'ASC');        
