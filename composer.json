@@ -3,7 +3,7 @@
     "license": "GPL-3.0",
     "type": "magento-module",
     "description": "Widget to show a list of products having an attribute value.",
-    "homepage": "https://github.com/aydus/Addressvalidator.git",
+    "homepage": "https://github.com/aydus/AttributeProducts.git",
     "require": {
         "php": ">=5.3",
         "magento-hackathon/magento-composer-installer": "*"
