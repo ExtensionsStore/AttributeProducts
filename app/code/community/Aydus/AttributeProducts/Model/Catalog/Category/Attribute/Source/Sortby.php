@@ -13,7 +13,10 @@ class Aydus_AttributeProducts_Model_Catalog_Category_Attribute_Source_Sortby ext
     
     public function toOptionArray()
     {
-        return $this->getAllOptions();
+        $options = $this->getAllOptions();
+        $options[] = array('value'=>'letter', 'label'=>'First Letter Alphabetical');
+        
+        return $options;
     }
 	
 }

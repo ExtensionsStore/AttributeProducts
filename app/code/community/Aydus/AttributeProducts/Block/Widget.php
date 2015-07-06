@@ -155,7 +155,7 @@ class Aydus_AttributeProducts_Block_Widget extends Mage_Catalog_Block_Product_Li
                             $toolbar->setLetterCollection($letterCollection);
                             
                             //set filter
-                            if ($letter == 0){
+                            if ($letter === '0'){
                                 
                                 $this->_productCollection->addFieldToFilter('name', array('regexp' => "^[1-9].*"));
                                                                 
