@@ -66,6 +66,14 @@ class Aydus_AttributeProducts_Block_Widget extends Mage_Catalog_Block_Product_Li
         if (is_null($this->_productCollection)) {
             
             $this->_productCollection = Mage::getModel('catalog/product')->getCollection();
+            $this->_productCollection
+                ->addAttributeToSelect(Mage::getSingleton('catalog/config')->getProductAttributes())
+                ->addMinimalPrice()
+                ->addFinalPrice()
+                ->addTaxPercents();
+    
+            Mage::getSingleton('catalog/product_status')->addVisibleFilterToCollection($this->_productCollection);
+            Mage::getSingleton('catalog/product_visibility')->addVisibleInCatalogFilterToCollection($this->_productCollection);
             
             $attributesStr = $this->getAttribute();
             $attributes = explode(';', $attributesStr);
@@ -118,11 +126,13 @@ class Aydus_AttributeProducts_Block_Widget extends Mage_Catalog_Block_Product_Li
                     if ($widgetCategory->getId()){
                         
                         $this->_productCollection->addCategoryFilter($widgetCategory);
+                        
                         $category = $widgetCategory;
                     }
                 } 
 
                 $this->prepareSortableFieldsByCategory($category);
+                $this->_productCollection->addUrlRewrite($category->getId());
                 
                 if ($this->getNumProducts()){
                     $size = $this->getNumProducts();

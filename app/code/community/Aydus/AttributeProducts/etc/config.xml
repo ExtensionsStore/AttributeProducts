@@ -11,7 +11,7 @@
 <config>
     <modules>
         <Aydus_AttributeProducts>
-            <version>0.9.0</version>
+            <version>0.9.6</version>
         </Aydus_AttributeProducts>
     </modules>
     <phpunit>
