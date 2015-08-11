@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * Attribute Products acl
+ * 
+ * @category   Aydus
+ * @package    Aydus_AttributeProducts
+ * @author     Aydus <davidt@aydus.com>
+ */
+-->
+<config>
+    <acl>
+        <resources>
+            <admin>
+                <children>
+                    <system>
+                        <children>
+                            <config>
+                                <children>
+                                    <aydus_attributeproducts translate="title">
+                                        <title>Attribute Products Extension</title>
+                                    </aydus_attributeproducts>
+                                </children>
+                            </config>
+                        </children>
+                    </system>
+                </children>
+            </admin>
+        </resources>
+    </acl>
+</config>
