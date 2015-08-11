@@ -42,5 +42,8 @@
                 <class>Aydus_AttributeProducts_Model</class>
             </aydus_attributeproducts>        
         </models>              
-    </global>         
+    </global>     
+    <default>
+    	<catalog><aydus_attributeproducts><version>0.9.6</version></aydus_attributeproducts></catalog>
+    </default>    
 </config>
